@@ -1,0 +1,125 @@
+# Règles métier configurables - Niveau 3
+# Ces règles sont évaluées AVANT les patterns et l'IA
+# Format: conditions doivent être 100% validées pour appliquer la règle
+
+rules:
+  # ─── Identité Bancaire ──────────────────────────────────────────────────
+  - name: "RIB Detection"
+    description: "Détecte les documents d'identité bancaire (IBAN, BIC, RIB)"
+    conditions:
+      contains_all: ["IBAN", "BIC"]
+      not_contains: ["solde", "opérations", "mouvement"]
+    result:
+      type: "relevé_identité_bancaire"
+      sub_type: "identite_bancaire"
+      confidence: 0.95
+
+  # ─── Relevé de Compte Bancaire ──────────────────────────────────────────
+  - name: "Bank Statement Detection"
+    description: "Détecte les relevés de compte (avec solde et mouvements)"
+    conditions:
+      contains_all: ["solde", "débit", "crédit"]
+      not_contains: ["IBAN", "BIC"]
+    result:
+      type: "relevé_compte"
+      sub_type: "compte_bancaire"
+      confidence: 0.90
+
+  # ─── Fiche de Paie ──────────────────────────────────────────────────────
+  - name: "Payroll Detection"
+    description: "Détecte les fiches de paie (bulletin de salaire)"
+    conditions:
+      contains_all: ["salaire brut", "cotisations", "net à payer"]
+      not_contains: null
+    result:
+      type: "fiche_paie"
+      sub_type: "bulletin_salaire"
+      confidence: 0.92
+
+  # ─── Facture Énergie ────────────────────────────────────────────────────
+  - name: "Energy Invoice Detection"
+    description: "Détecte les factures énergétiques (électricité, gaz, eau)"
+    conditions:
+      contains_all: ["kWh", "consommation", "montant TTC"]
+      not_contains: null
+    result:
+      type: "facture_énergie"
+      sub_type: "energy_bill"
+      confidence: 0.88
+
+  # ─── Facture Télécom ────────────────────────────────────────────────────
+  - name: "Telecom Invoice Detection"
+    description: "Détecte les factures de télécom (internet, mobile, etc.)"
+    conditions:
+      contains_all: ["forfait", "opérateur"]
+      not_contains: null
+    result:
+      type: "facture_télécoms"
+      sub_type: "telecom_bill"
+      confidence: 0.87
+
+  # ─── Attestation de Domicile ────────────────────────────────────────────
+  - name: "Proof of Address"
+    description: "Attestation de domicile (adresse)"
+    conditions:
+      contains_all: ["attestation", "domicile"]
+      not_contains: null
+    result:
+      type: "attestation_domicile"
+      sub_type: "proof_of_address"
+      confidence: 0.91
+
+  # ─── Attestation Employeur ──────────────────────────────────────────────
+  - name: "Employer Certificate"
+    description: "Attestation employeur (contrat travail, embauche)"
+    conditions:
+      contains_all: ["attestation", "employeur"]
+      not_contains: null
+    result:
+      type: "attestation_employeur"
+      sub_type: "employer_certificate"
+      confidence: 0.90
+
+  # ─── Attestation Sécurité Sociale ──────────────────────────────────────
+  - name: "Social Security Certificate"
+    description: "Attestation d'affiliation sécurité sociale"
+    conditions:
+      contains_all: ["sécurité sociale", "affiliation"]
+      not_contains: null
+    result:
+      type: "attestation_sécu"
+      sub_type: "social_security_cert"
+      confidence: 0.89
+
+  # ─── Avis d'Imposition ──────────────────────────────────────────────────
+  - name: "Tax Assessment"
+    description: "Avis d'imposition ou avis fiscal"
+    conditions:
+      contains_all: ["avis d'imposition", "revenu imposable"]
+      not_contains: null
+    result:
+      type: "avis_imposition"
+      sub_type: "tax_assessment"
+      confidence: 0.93
+
+  # ─── Contrat de Travail ────────────────────────────────────────────────
+  - name: "Employment Contract"
+    description: "Contrat de travail (CDI, CDD, stage)"
+    conditions:
+      contains_all: ["contrat de travail"]
+      not_contains: null
+    result:
+      type: "contrat_travail"
+      sub_type: "employment_contract"
+      confidence: 0.94
+
+  # ─── Relance Impayé ────────────────────────────────────────────────────
+  - name: "Overdue Notice"
+    description: "Relance ou mise en demeure pour facture impayée"
+    conditions:
+      contains_all: ["impayé", "relance"]
+      not_contains: null
+    result:
+      type: "relance_impayé"
+      sub_type: "overdue_notice"
+      confidence: 0.92

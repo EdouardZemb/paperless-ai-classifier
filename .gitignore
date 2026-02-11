@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.env
+
+# Logs
+*.log
+classifier.log*
+
+# Data / models
+models/*.jsonl
+models/*.json
+
+# Cache
+.pytest_cache/
+
+# Local config secrets
+webhook/.env
+
+# OS
+.DS_Store
+
+# Local temp
+*.tmp
+*.bak

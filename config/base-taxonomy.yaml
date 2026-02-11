@@ -1,0 +1,345 @@
+# Taxonomie enrichie avec sous-types - Niveaux 1, 2, 3
+# Hiérarchie: catégorie > sous-type avec patterns discriminants
+
+document_types:
+  administrative:
+    # Factures enrichies
+    facture: null  # Type générique (pour backward compatibility)
+    facture_énergie: null
+    facture_télécoms: null
+    facture_abonnement: null
+    facture_autre: null
+    
+    # Attestations enrichies
+    attestation: null
+    attestation_domicile: null
+    attestation_employeur: null
+    attestation_sécu: null
+    attestation_autre: null
+    
+    # Contrats
+    contrat: null
+    contrat_travail: null
+    contrat_service: null
+    contrat_autre: null
+    
+    # Documents officiels
+    certificat: null
+    déclaration: null
+    notification: null
+    courrier_officiel: null
+  
+  financial:
+    # Relevés bancaires enrichis
+    relevé_bancaire: null
+    relevé_identité_bancaire: null  # IBAN, BIC, RIB
+    relevé_compte: null  # Solde, opérations, mouvements
+    relevé_notes: null  # Intérêts, frais
+    
+    # Fiches de paie
+    fiche_paie: null
+    bulletin_salaire: null
+    fiche_prime: null
+    fiche_cotisations: null
+    
+    # Autres documents financiers
+    impots: null
+    avis_imposition: null
+    avis_cotisation: null
+    remboursement: null
+    relance_impayé: null
+    facture_assurance: null
+    attestation_assurage: null
+  
+  personal:
+    # Identité
+    identité: null
+    carte_identité: null
+    passeport: null
+    permis_conduire: null
+    
+    # Santé
+    santé: null
+    ordonnance: null
+    mutuelle: null
+    carnet_vaccination: null
+    
+    # Formation
+    formation: null
+    diplôme: null
+    bulletin_notes: null
+    certificat_formation: null
+    
+    # Autre
+    transport: null
+    logement: null
+    loisirs: null
+  
+  professional:
+    # Contrats et décisions
+    contrat_travail: null
+    contrat_prestation: null
+    
+    # Formation
+    formation_pro: null
+    certificat_pro: null
+    bilan_compétence: null
+    
+    # Documents RH
+    note_frais: null
+    note_de_service: null
+    congés: null
+    demande_congé: null
+    évaluation: null
+    bulletin_adhésion: null
+  
+  legal:
+    # Documents juridiques
+    juridique: null
+    contrat_juridique: null
+    mandat: null
+    convention: null
+    
+    # Succession
+    succession: null
+    testament: null
+    acte_décès: null
+    
+    # Propriété
+    propriété: null
+    titre_propriété: null
+    bail: null
+    acte_vente: null
+    
+    # Responsabilité
+    responsabilité: null
+    assurance_responsabilité: null
+    sinistre: null
+
+# Tags génériques (auto-détectés)
+auto_tags:
+  urgency:
+    - urgent
+    - à_traiter
+    - archivé
+    - en_cours
+  
+  status:
+    - reçu
+    - payé
+    - en_attente
+    - validé
+    - refusé
+  
+  period:
+    - mensuel
+    - annuel
+    - ponctuel
+    - récurrent
+  
+  # Nouveaux tags pour sous-types
+  financial_type:
+    - identité_bancaire
+    - compte_bancaire
+    - fiche_paie
+    - document_impôt
+    - assurance
+  
+  content_type:
+    - avec_signatures
+    - avec_montants
+    - avec_dates
+    - multi_pages
+
+# Patterns de détection automatique - ENRICHIS
+detection_patterns:
+  document_identifiers:
+    # Factures
+    facture:
+      - "facture"
+      - "invoice"
+      - "montant"
+      - "TTC"
+      - "TVA"
+    
+    facture_énergie:
+      - "kWh"
+      - "consommation"
+      - "électricité"
+      - "gaz"
+      - "eau"
+      - "tarif énergétique"
+      - "facture énergie"
+    
+    facture_télécoms:
+      - "forfait"
+      - "appels"
+      - "SMS"
+      - "internet"
+      - "mobile"
+      - "opérateur"
+      - "abonnement télécom"
+      - "facture télécom"
+    
+    facture_abonnement:
+      - "abonnement"
+      - "cotisation"
+      - "adhésion"
+      - "souscription"
+      - "période"
+      - "renouvellement"
+    
+    # Relevés bancaires
+    relevé_bancaire:
+      - "relevé"
+      - "statement"
+      - "compte"
+      - "opérations"
+    
+    relevé_identité_bancaire:
+      - "IBAN"
+      - "BIC"
+      - "RIB"
+      - "identité bancaire"
+      - "domiciliation"
+      - "agence"
+    
+    relevé_compte:
+      - "solde"
+      - "débit"
+      - "crédit"
+      - "virement"
+      - "prélèvement"
+      - "mouvement"
+      - "opération"
+      - "date valeur"
+    
+    relevé_notes:
+      - "intérêts"
+      - "frais"
+      - "commissions"
+      - "pénalités"
+    
+    # Fiches de paie
+    fiche_paie:
+      - "bulletin de salaire"
+      - "fiche de paie"
+      - "salaire"
+      - "net à payer"
+      - "cotisations"
+      - "période paye"
+    
+    bulletin_salaire:
+      - "salaire brut"
+      - "salaire net"
+      - "net à payer"
+      - "période paye"
+      - "mois"
+    
+    fiche_cotisations:
+      - "cotisations"
+      - "urssaf"
+      - "sspe"
+      - "cotisations sociales"
+    
+    # Attestations
+    attestation:
+      - "attestation"
+      - "certifie que"
+      - "atteste"
+      - "certificate"
+    
+    attestation_domicile:
+      - "domicile"
+      - "adresse"
+      - "résidence"
+      - "habitation"
+      - "attestation domiciliation"
+    
+    attestation_employeur:
+      - "employeur"
+      - "entreprise"
+      - "salarié"
+      - "contrat travail"
+      - "salaire mensuel"
+      - "attestation employeur"
+    
+    attestation_sécu:
+      - "sécurité sociale"
+      - "assurance maladie"
+      - "mutuelle"
+      - "couverture"
+      - "attestation affiliation"
+    
+    # Contrats
+    contrat:
+      - "contrat"
+      - "souscription"
+      - "engagement"
+      - "conditions générales"
+    
+    contrat_travail:
+      - "contrat de travail"
+      - "cdi"
+      - "cdd"
+      - "stage"
+      - "apprentissage"
+      - "date embauche"
+    
+    # Autres
+    certificat:
+      - "certificat"
+      - "diplôme"
+      - "qualification"
+    
+    déclaration:
+      - "déclaration"
+      - "formulaire"
+      - "déclaré"
+    
+    notification:
+      - "notification"
+      - "avis"
+      - "important"
+    
+    courrier_officiel:
+      - "courrier"
+      - "lettre officielle"
+      - "correspondance"
+    
+    # Documents fiscaux
+    avis_imposition:
+      - "avis d'imposition"
+      - "montant impôt"
+      - "revenu imposable"
+      - "année fiscale"
+    
+    avis_cotisation:
+      - "cotisation"
+      - "cotisations professionnelles"
+    
+    # Assurance
+    facture_assurance:
+      - "prime assurance"
+      - "assurance"
+      - "police"
+      - "cotisation assurance"
+    
+    # Remboursement
+    remboursement:
+      - "remboursement"
+      - "crédit"
+      - "avoir"
+      - "retour"
+
+# Seuils de confiance
+confidence_thresholds:
+  auto_classify: 0.85  # Auto-classement si confiance >= 85%
+  review_needed: 0.60  # Validation humaine si 60% <= confiance < 85%
+  manual_only: 0.60    # Classification manuelle si confiance < 60%
+
+# Configuration apprentissage
+learning:
+  feedback_weight: 0.7  # Poids des corrections utilisateur
+  pattern_reinforcement: true
+  minimum_samples: 3    # Minimum d'exemples avant règle automatique

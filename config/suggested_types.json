@@ -1,0 +1,25 @@
+{
+  "type_nouveau": {
+    "suggested_at": "2026-02-11T10:09:31.672116",
+    "examples": [
+      {
+        "text": "Document spécialisé très rare",
+        "confidence": 0.75,
+        "timestamp": "2026-02-11T10:09:31.672131"
+      },
+      {
+        "text": "Document spécialisé très rare",
+        "confidence": 0.75,
+        "timestamp": "2026-02-11T10:09:35.939034"
+      },
+      {
+        "text": "Document spécialisé très rare",
+        "confidence": 0.75,
+        "timestamp": "2026-02-11T10:10:02.413883"
+      }
+    ],
+    "total_suggestions": 4,
+    "validated": false,
+    "category": null
+  }
+}
