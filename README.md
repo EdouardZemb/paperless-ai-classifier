@@ -1,5 +1,8 @@
 # Paperless AI Classifier - Niveaux 1, 2, 3 ✅
 
+[![BMAD Quick Flow](https://img.shields.io/badge/BMAD-Quick%20Flow-blue)](./BMAD_QUICK_SPEC.md)
+[![GitFlow](https://img.shields.io/badge/GitFlow-enabled-brightgreen)](./CONTRIBUTING.md)
+
 ## 🎯 Objectif
 Workflow IA local pour la classification automatique de documents dans Paperless-ngx avec apprentissage continu et validation humaine seulement en cas d'incertitude.
 
