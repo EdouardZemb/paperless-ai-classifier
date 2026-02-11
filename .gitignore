@@ -26,3 +26,6 @@ webhook/.env
 # Local temp
 *.tmp
 *.bak
+
+# BMAD artifacts
+_bmad-output/
